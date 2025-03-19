@@ -1,0 +1,19 @@
+model:
+  provider: "openai"  # 可选: openai, ollama, lmstudio
+  name: "gpt-3.5-turbo"  # 模型名称
+  api_key: ""  # API密钥（如适用）
+  api_base: ""  # API基础URL（如适用）
+  temperature: 0.7  # 温度参数
+
+knowledge_base:
+  embedding_model: "text-embedding-3-small"  # 嵌入模型
+  documents_dir: "./knowledge/documents"  # 文档目录
+  vector_dir: "./knowledge/embeddings"  # 向量存储目录
+  tree_index_path: "./knowledge/index/tree.json"  # 树状索引路径
+  auto_index: true  # 是否自动索引文档
+  auto_build_tree: true  # 是否自动构建树状结构
+  
+ui:
+  theme: "soft"  # Gradio主题
+  title: "AI助手"  # 应用标题
+  max_history: 10  # 最大历史消息数
