@@ -1,4 +1,4 @@
-# ASR-C
+# MarkTreeChat (ASR-C)
 
 这是一个基于Gradio的WebUI项目，用于实现与AI大模型的多轮对话，并支持RAG和树状结构的知识库功能。
 
