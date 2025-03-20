@@ -64,7 +64,9 @@ class DocumentIndexer:
             if not file_path.endswith('.md'):
                 print(f"跳过非Markdown文件: {file_path}")
                 return []
-            
+            # 获取文件修改时间
+            last_modified = os.path.getmtime(file_path)
+
             # 读取文件内容
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
@@ -77,7 +79,8 @@ class DocumentIndexer:
             metadata = {
                 "source": file_path,
                 "title": file_name,
-                "type": "markdown"
+                "type": "markdown",
+                "last_modified": last_modified  # 添加最后修改时间
             }
             
             # 为每个块创建索引
@@ -100,27 +103,55 @@ class DocumentIndexer:
         except Exception as e:
             print(f"索引文件 {file_path} 失败: {e}")
             return []
-    
-    def index_directory(self, directory_path: str) -> Dict[str, List[str]]:
+
+    def index_directory(self, directory_path: str, incremental: bool = True) -> Dict[str, List[str]]:
         """递归索引目录中的所有Markdown文件
-        
+
         Args:
             directory_path: 要索引的目录路径
-            
+            incremental: 是否增量索引（只处理新文件或修改过的文件）
+
         Returns:
             文件路径到文档ID列表的映射
         """
         indexed_files = {}
-        
+
         # 遍历目录
         for root, _, files in os.walk(directory_path):
             for file in files:
                 if file.endswith('.md'):
                     file_path = os.path.join(root, file)
+
+                    # 增量索引：检查文件是否已索引且未修改
+                    if incremental:
+                        needs_indexing = True
+                        # 查找该文件的已有索引
+                        for doc_id, doc_info in self.vector_store.documents.items():
+                            metadata = doc_info.get("metadata", {})
+                            if (metadata.get("source") == file_path and
+                                metadata.get("chunk_index") == 0 and
+                                "last_modified" in metadata):
+
+                                # 检查文件是否已修改
+                                current_mtime = os.path.getmtime(file_path)
+                                indexed_mtime = metadata.get("last_modified")
+
+                                if abs(current_mtime - indexed_mtime) < 1.0:  # 考虑文件系统时间精度误差
+                                    needs_indexing = False
+                                    print(f"跳过未修改的文件: {file_path}")
+                                    break
+
+                        if not needs_indexing:
+                            continue
+                        else:
+                            # 文件已修改，先删除旧索引
+                            self.remove_file_index(file_path)
+
+                    # 索引文件
                     doc_ids = self.index_file(file_path)
                     if doc_ids:
                         indexed_files[file_path] = doc_ids
-        
+
         return indexed_files
     
     def remove_file_index(self, file_path: str) -> bool:

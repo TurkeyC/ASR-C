@@ -3,6 +3,7 @@ import json
 import re
 from typing import Dict, List, Any, Optional
 import networkx as nx
+import uuid
 
 class KnowledgeTreeBuilder:
     """树状知识库构建器，用于构建文档的树状结构"""
@@ -137,7 +138,88 @@ class KnowledgeTreeBuilder:
         
         # 保存树状结构
         self._save_tree()
-    
+
+    def update_tree(self):
+        """更新树状结构，保留已有结构，仅添加新文件"""
+        try:
+            # 如果树不存在，则完全重建
+            if not hasattr(self, 'tree') or not self.tree:
+                return self.build_tree()
+
+            # 扫描目录中的所有文件
+            current_files = set()
+            for root, _, files in os.walk(self.documents_dir):
+                for file in files:
+                    if file.endswith('.md'):
+                        file_path = os.path.join(root, file)
+                        rel_path = os.path.relpath(file_path, self.documents_dir)
+                        current_files.add(rel_path)
+
+            # 获取树中已有的文件
+            existing_files = set()
+            for node in self.tree.nodes.values():
+                if node.get('type') == 'file':
+                    file_path = node.get('path', '')
+                    if file_path:
+                        existing_files.add(file_path)
+
+            # 计算新增的文件
+            new_files = current_files - existing_files
+
+            # 将新文件添加到树中
+            if new_files:
+                for file_path in new_files:
+                    abs_path = os.path.join(self.documents_dir, file_path)
+                    dir_path, filename = os.path.split(file_path)
+
+                    # 确保目录结构存在
+                    current_node = self.tree.root
+                    if dir_path:
+                        dirs = dir_path.split(os.path.sep)
+                        for d in dirs:
+                            found = False
+                            for child_id in current_node.get('children', []):
+                                child = self.tree.nodes.get(child_id)
+                                if child and child.get('name') == d and child.get('type') == 'directory':
+                                    current_node = child
+                                    found = True
+                                    break
+
+                            if not found:
+                                # 创建新的目录节点
+                                dir_node_id = str(uuid.uuid4())
+                                dir_node = {
+                                    'id': dir_node_id,
+                                    'name': d,
+                                    'type': 'directory',
+                                    'path': os.path.join(current_node.get('path', ''), d) if current_node.get('path') else d,
+                                    'children': []
+                                }
+                                self.tree.add_node(dir_node_id, dir_node)
+                                current_node.setdefault('children', []).append(dir_node_id)
+                                current_node = dir_node
+
+                    # 添加文件节点
+                    file_node_id = str(uuid.uuid4())
+                    file_node = {
+                        'id': file_node_id,
+                        'name': filename,
+                        'type': 'file',
+                        'path': file_path,
+                        'children': []
+                    }
+                    self.tree.add_node(file_node_id, file_node)
+                    current_node.setdefault('children', []).append(file_node_id)
+
+                # 保存更新后的树
+                self.save_tree()
+
+            return len(new_files)
+
+        except Exception as e:
+            print(f"更新树结构失败: {e}")
+            return 0
+
     def get_tree(self):
         """获取构建的知识树"""
         return self.tree

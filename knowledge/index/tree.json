@@ -9,6 +9,18 @@
       "id": "root"
     },
     {
+      "name": "3.刚体.md",
+      "type": "file",
+      "path": "3.刚体.md",
+      "id": "file:3.刚体.md"
+    },
+    {
+      "name": "cehsi.md",
+      "type": "file",
+      "path": "cehsi.md",
+      "id": "file:cehsi.md"
+    },
+    {
       "name": "README.md",
       "type": "file",
       "path": "README.md",
@@ -357,6 +369,14 @@
     }
   ],
   "links": [
+    {
+      "source": "root",
+      "target": "file:3.刚体.md"
+    },
+    {
+      "source": "root",
+      "target": "file:cehsi.md"
+    },
     {
       "source": "root",
       "target": "file:README.md"

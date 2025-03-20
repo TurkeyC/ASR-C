@@ -79,7 +79,9 @@ def init_knowledge_base():
     
     # 如果配置为自动索引，则索引文档目录
     if kb_config.get("auto_index", False):
-        indexer.index_directory(kb_config["documents_dir"])
+        # 使用增量索引
+        incremental = kb_config.get("incremental_index", True)
+        indexer.index_directory(kb_config["documents_dir"], incremental=incremental)
     
     # 初始化树状知识库
     tree_builder = KnowledgeTreeBuilder(

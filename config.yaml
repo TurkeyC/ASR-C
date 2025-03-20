@@ -3,13 +3,14 @@ knowledge_base:
   auto_index: true
   documents_dir: ./knowledge/documents
   embedding_model: sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2
+  incremental_index: true
   tree_index_path: ./knowledge/index/tree.json
   vector_dir: ./knowledge/vectors
 model:
-  api_base: ''
+  api_base: http://127.0.0.1:1234/v1
   api_key: ''
-  name: ''
-  provider: ''
+  name: lla-3.2-3b-ins-unc
+  provider: lmstudio
   temperature: 0.7
 ui:
   max_history: 10

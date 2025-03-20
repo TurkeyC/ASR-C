@@ -102,7 +102,27 @@ def create_kb_manager_ui(kb: Dict[str, Any]):
             return f"成功重建索引，共处理了 {len(indexed)} 个文件"
         except Exception as e:
             return f"重建索引失败: {str(e)}"
-    
+
+    # 增量索引函数
+    def incremental_index(documents_dir):
+        try:
+            # 验证目录是否存在
+            if not os.path.exists(documents_dir):
+                return f"目录不存在: {documents_dir}"
+
+            # 执行增量索引
+            indexed = indexer.index_directory(documents_dir, incremental=True)
+
+            # 轻量级更新树状结构
+            tree_builder.update_tree()
+
+            # 刷新导航器
+            navigator.refresh()
+
+            return f"成功增量索引，共处理了 {len(indexed)} 个新增或修改的文件"
+        except Exception as e:
+            return f"增量索引失败: {str(e)}"
+
     # 上传文件
     def upload_file(files, kb_dir):
         if not files:
@@ -168,12 +188,14 @@ def create_kb_manager_ui(kb: Dict[str, Any]):
             # 右侧：内容展示和文件管理
             with gr.Accordion("节点内容", open=True):
                 content_display = gr.Markdown("")
-            
+
             with gr.Accordion("知识库管理", open=True):
-                documents_dir = gr.Textbox(label="文档目录", 
-                                          value="./knowledge/documents", 
-                                          placeholder="输入文档目录路径...")
-                rebuild_btn = gr.Button("重建索引")
+                documents_dir = gr.Textbox(label="文档目录",
+                                           value="./knowledge/documents",
+                                           placeholder="输入文档目录路径...")
+                with gr.Row():
+                    rebuild_btn = gr.Button("重建索引")
+                    incremental_btn = gr.Button("增量索引")  # 新增的增量索引按钮
                 rebuild_status = gr.Markdown("")
                 
                 with gr.Row():
@@ -230,6 +252,23 @@ def create_kb_manager_ui(kb: Dict[str, Any]):
         outputs=[stats_text]
     ).then(
         lambda *args: "root",  # 修改为接收任意数量的参数
+        outputs=[selected_node_id]
+    ).then(
+        update_tree_view,
+        inputs=[selected_node_id],
+        outputs=[path_display, content_display, tree_items]
+    )
+
+    # 增量索引按钮的点击事件
+    incremental_btn.click(
+        incremental_index,
+        inputs=[documents_dir],
+        outputs=[rebuild_status]
+    ).then(
+        get_stats,
+        outputs=[stats_text]
+    ).then(
+        lambda *args: "root",
         outputs=[selected_node_id]
     ).then(
         update_tree_view,

@@ -7,11 +7,16 @@ from models.base import BaseModel
 def create_settings_ui(config: Dict[str, Any], model: BaseModel):
     """创建设置界面"""
     
+    # 声明model为非本地变量，以便可以修改它
+    global_model = model
+
     # 保存配置
-    def save_config(provider, model_name, api_key, api_base, temperature, 
-                    embedding_model, documents_dir, vector_dir, tree_index_path, 
-                    auto_index, auto_build_tree):
+    def save_config(provider, model_name, api_key, api_base, temperature,
+                  embedding_model, documents_dir, vector_dir, tree_index_path,
+                  auto_index, incremental_index, auto_build_tree):
         try:
+            from models import create_model
+
             # 更新配置
             new_config = {
                 "model": {
@@ -27,16 +32,44 @@ def create_settings_ui(config: Dict[str, Any], model: BaseModel):
                     "vector_dir": vector_dir,
                     "tree_index_path": tree_index_path,
                     "auto_index": bool(auto_index),
+                    "incremental_index": bool(incremental_index),
                     "auto_build_tree": bool(auto_build_tree)
                 },
                 "ui": config.get("ui", {"theme": "soft", "title": "AI助手", "max_history": 10})
             }
-            
+
             # 写入配置文件
             with open("config.yaml", "w", encoding="utf-8") as f:
                 yaml.dump(new_config, f, default_flow_style=False, allow_unicode=True)
-            
-            return "配置已保存，请重启应用以应用更改"
+
+            # 重要：重新创建模型实例
+            try:
+                nonlocal global_model
+                # 创建新的模型实例
+                new_model = create_model(
+                    provider=provider,
+                    model_name=model_name,
+                    api_key=api_key,
+                    api_base=api_base,
+                    temperature=float(temperature)
+                )
+
+                # 替换全局模型实例的属性
+                global_model.model_name = new_model.model_name
+                global_model.temperature = new_model.temperature
+
+                # 复制所有属性
+                for attr_name in dir(new_model):
+                    if not attr_name.startswith('__'):
+                        try:
+                            setattr(global_model, attr_name, getattr(new_model, attr_name))
+                        except:
+                            pass
+
+                return "配置已保存并应用，模型已更新！您可以直接使用新模型。"
+            except Exception as e:
+                return f"配置已保存，但更新模型实例失败: {str(e)}。请重启应用以应用更改。"
+
         except Exception as e:
             return f"保存配置失败: {str(e)}"
     
@@ -175,6 +208,10 @@ def create_settings_ui(config: Dict[str, Any], model: BaseModel):
                         value=config["knowledge_base"].get("auto_index", True), 
                         label="自动索引文档"
                     )
+                    incremental_index = gr.Checkbox(
+                        value=config["knowledge_base"].get("incremental_index", True),
+                        label="增量索引（仅处理修改过的文件）"
+                    )
                     auto_build_tree = gr.Checkbox(
                         value=config["knowledge_base"].get("auto_build_tree", True), 
                         label="自动构建树状结构"
@@ -202,7 +239,7 @@ def create_settings_ui(config: Dict[str, Any], model: BaseModel):
         inputs=[
             provider, model_name, api_key, api_base, temperature,
             embedding_model, documents_dir, vector_dir, tree_index_path,
-            auto_index, auto_build_tree
+            auto_index, incremental_index, auto_build_tree  # 添加incremental_index参数
         ],
         outputs=[save_result]
     )
