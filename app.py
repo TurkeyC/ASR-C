@@ -112,7 +112,7 @@ def create_app():
         with gr.Tab("知识库管理"):
             create_kb_manager_ui(kb)
             
-        with gr.Tab("设置"):
+        with gr.Tab("设置 (记得要“保存配置”)"):
             create_settings_ui(config, model)
 
     return app

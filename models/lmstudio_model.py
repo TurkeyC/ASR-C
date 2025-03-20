@@ -46,5 +46,24 @@ class LMStudioModel(BaseModel):
 
     def get_available_models(self) -> List[str]:
         """获取可用的LMStudio模型列表"""
-        # LMStudio通常只有一个本地模型
-        return ["Local Model"]
+        try:
+            # 调用LMStudio API获取模型列表
+            response = requests.get(f"{self.api_base}/models", headers=self.headers)
+
+            if response.status_code != 200:
+                print(f"获取模型列表失败: {response.status_code} {response.text}")
+                return ["Local Model"]  # 返回默认值
+
+            # 解析响应并提取模型ID
+            models_data = response.json().get("data", [])
+            model_names = [model.get("id") for model in models_data if model.get("id")]
+
+            # 如果没有找到模型，返回默认值
+            if not model_names:
+                return ["Local Model"]
+
+            return model_names
+
+        except Exception as e:
+            print(f"获取LMStudio模型列表失败: {e}")
+            return ["Local Model"]  # 出错时返回默认值

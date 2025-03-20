@@ -161,7 +161,7 @@ def create_settings_ui(config: Dict[str, Any], model: BaseModel):
                 api_base = gr.Textbox(
                     value=config["model"].get("api_base", ""), 
                     label="API基础URL", 
-                    placeholder="输入自定义API基础URL（可选）"
+                    placeholder="输入自定义API基础URL"
                 )
                 update_models_btn = gr.Button("获取可用模型列表")
                 model_name = gr.Dropdown(
