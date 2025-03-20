@@ -141,14 +141,53 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
                 elem_classes="chat-display"  # 添加自定义类以便于样式定制
             )
 
-            # 提示用户可以使用LaTeX
+            # 提示用户
             msg = gr.Textbox(
-                placeholder="在此输入您的问题...",
-                lines=3
+                placeholder="在此输入您的问题...(使用Enter键发送，Shift+Enter换行)",
+                lines=3,
             )
 
+            # 修改JavaScript代码，确保正确处理所有情况
+            js = """
+            function(textbox) {
+                textbox.addEventListener("keydown", function(e) {
+                    if (e.key === "Enter") {
+                        if (!e.shiftKey && !e.ctrlKey) {
+                            // 普通Enter - 发送消息
+                            e.preventDefault();
+                            const submitButton = document.querySelector(".submit-btn");
+                            if (submitButton) {
+                                submitButton.click();
+                            }
+                        } else {
+                            // 在按下Shift+Enter或Ctrl+Enter的情况下
+                            // 阻止默认的提交行为，保留插入换行的功能
+                            e.stopPropagation();  // 停止事件冒泡
+                            // 不阻止默认行为，允许插入换行符
+                        }
+                    }
+                });
+
+                // 禁用Gradio的默认提交行为
+                const form = textbox.closest("form");
+                if (form) {
+                    form.addEventListener("keydown", function(e) {
+                        if (e.key === "Enter" && (e.shiftKey || e.ctrlKey)) {
+                            // 阻止Gradio的默认提交行为
+                            e.stopPropagation();
+                        }
+                    }, true);  // 使用捕获阶段
+                }
+
+                return textbox;
+            }
+            """
+
+            # 将JavaScript应用到文本框
+            msg.js = js
+
             with gr.Row():
-                submit_btn = gr.Button("发送")
+                submit_btn = gr.Button("发送", elem_classes="submit-btn")
                 clear_btn = gr.Button("清除对话")
                 copy_btn = gr.Button("复制最后回复")
 
@@ -194,11 +233,11 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
         outputs=[msg, chatbot]
     )
 
-    msg.submit(
-        respond,
-        inputs=[msg, chatbot, system_prompt, use_rag, top_k, temperature],
-        outputs=[msg, chatbot]
-    )
+    # msg.submit(
+    #     respond,
+    #     inputs=[msg, chatbot, system_prompt, use_rag, top_k, temperature],
+    #     outputs=[msg, chatbot]
+    # )
 
     clear_btn.click(
         lambda: (None, []),
