@@ -229,7 +229,7 @@ def create_kb_manager_ui(kb: Dict[str, Any]):
         get_stats,
         outputs=[stats_text]
     ).then(
-        lambda: "root",
+        lambda *args: "root",  # 修改为接收任意数量的参数
         outputs=[selected_node_id]
     ).then(
         update_tree_view,

@@ -43,8 +43,12 @@ def create_settings_ui(config: Dict[str, Any], model: BaseModel):
     # 测试模型连接
     def test_model_connection(provider, model_name, api_key, api_base):
         from models import create_model
-        
+
         try:
+            # 确保model_name是字符串
+            if isinstance(model_name, list) and len(model_name) > 0:
+                model_name = model_name[0]
+
             # 创建模型实例
             test_model = create_model(
                 provider=provider,
@@ -53,13 +57,21 @@ def create_settings_ui(config: Dict[str, Any], model: BaseModel):
                 api_base=api_base,
                 temperature=0.7
             )
-            
-            # 测试简单对话
+
+            # 如果模型有test_connection方法，则使用它
+            if hasattr(test_model, 'test_connection'):
+                success, message = test_model.test_connection()
+                if success:
+                    return "连接测试成功！" + message
+                else:
+                    return message
+
+            # 否则使用chat方法测试连接
             response = test_model.chat(
-                messages=[{"role": "user", "content": "请回复"连接成功"用来测试API连接"}], 
+                messages=[{"role": "user", "content": "请回复 连接成功 用来测试API连接"}],
                 system_prompt="你是一个测试助手，请简短回复"
             )
-            
+
             return f"连接测试成功！模型回复: {response}"
         except Exception as e:
             return f"连接测试失败: {str(e)}"
@@ -103,7 +115,7 @@ def create_settings_ui(config: Dict[str, Any], model: BaseModel):
             # 模型设置
             with gr.Accordion("模型设置", open=True):
                 provider = gr.Dropdown(
-                    ["openai", "ollama", "lmstudio"], 
+                    ["openai", "ollama", "lmstudio", "moonshot", "deepseek"],
                     label="模型提供商", 
                     value=config["model"]["provider"]
                 )
@@ -197,6 +209,11 @@ def create_settings_ui(config: Dict[str, Any], model: BaseModel):
     
     # 根据提供商动态显示/隐藏字段
     def update_api_visibility(provider):
-        if provider == "openai":
+        if provider == "openai" or provider == "moonshot" or provider == "deepseek":
             return gr.update(visible=True), gr.update(visible=True)
-        elif provider == "lmst
+        elif provider == "lmstudio":
+            return gr.update(visible=False), gr.update(visible=True)
+        elif provider == "ollama":
+            return gr.update(visible=False), gr.update(visible=True)
+        else:
+            return gr.update(visible=False), gr.update(visible=False)

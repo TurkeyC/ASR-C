@@ -16,10 +16,12 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
     
     # 处理用户消息
     def respond(message, history, system_prompt, use_rag, top_k, temperature):
-        # 更新聊天历史
-        chat_history.append({"role": "user", "content": message})
-        
         try:
+            # 打印当前模型配置进行调试
+            print(f"使用模型: {model.model_name}")
+            print(f"API基础URL: {getattr(model, 'api_base', 'N/A')}")
+            print(f"API密钥前后4位: {model.api_key[:4]}...{model.api_key[-4:] if len(model.api_key) >= 8 else ''}")
+
             # 准备上下文（如果启用了RAG）
             context = ""
             if use_rag:
@@ -30,20 +32,41 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
                         system_prompt += "\n\n以下是与用户问题相关的参考信息，请在回答时使用这些信息：\n" + context
                     else:
                         system_prompt = "以下是与用户问题相关的参考信息，请在回答时使用这些信息：\n" + context
-            
+
+            # 获取聊天历史
+            current_chat_history = []
+            if history:
+                for entry in history:
+                    # 正确映射角色名称
+                    user_msg = {"role": "user", "content": entry[0]}
+                    assistant_msg = {"role": "assistant", "content": entry[1]}
+                    current_chat_history.append(user_msg)
+                    current_chat_history.append(assistant_msg)
+
+            # 添加用户最新消息
+            current_chat_history.append({"role": "user", "content": message})
+
             # 获取模型回复
             reply = model.chat(
-                messages=chat_history,
+                messages=current_chat_history,
                 system_prompt=system_prompt,
                 temperature=float(temperature)
             )
-            
+
+            # 确保reply是字符串
+            if not isinstance(reply, str):
+                reply = str(reply)
+
             # 更新聊天历史
-            chat_history.append({"role": "assistant", "content": reply})
-            
-            return reply
+            history = history + [(message, reply)]
+
+            # 关键修复：返回空字符串和更新的历史记录
+            return "", history
         except Exception as e:
-            return f"发生错误: {str(e)}"
+            error_msg = f"发生错误: {str(e)}"
+            # 添加错误信息到历史记录
+            history = history + [(message, error_msg)]
+            return "", history
     
     # 创建界面组件
     with gr.Row():
@@ -84,16 +107,16 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
     submit_btn.click(
         respond,
         inputs=[msg, chatbot, system_prompt, use_rag, top_k, temperature],
-        outputs=[chatbot]
+        outputs=[msg, chatbot]  # 添加msg作为输出，这样才能清空输入框
     )
-    
+
     msg.submit(
         respond,
         inputs=[msg, chatbot, system_prompt, use_rag, top_k, temperature],
-        outputs=[chatbot]
+        outputs=[msg, chatbot]  # 添加msg作为输出，这样才能清空输入框
     )
-    
+
     clear_btn.click(
-        lambda: [], 
-        outputs=[chatbot]
+        lambda: (None, []),  # 返回一个元组 (None, [])
+        outputs=[msg, chatbot]
     )

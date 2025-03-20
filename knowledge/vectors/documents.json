@@ -1,0 +1,382 @@
+{
+  "./knowledge/documents\\README.md_0": {
+    "content": "",
+    "metadata": {
+      "source": "./knowledge/documents\\README.md",
+      "title": "README.md",
+      "type": "markdown",
+      "chunk_index": 0,
+      "total_chunks": 1
+    }
+  },
+  "./knowledge/documents\\tese_dir\\aoc.md_0": {
+    "content": "这是一篇测试文档，里面有一些测试知识：\n\n\n\n小明今年5岁了",
+    "metadata": {
+      "source": "./knowledge/documents\\tese_dir\\aoc.md",
+      "title": "aoc.md",
+      "type": "markdown",
+      "chunk_index": 0,
+      "total_chunks": 1
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分作业\\微积分作业2.md_0": {
+    "content": "# 20250314\n\n1. 求下列级数的收敛半径和收敛域：\n\n   (1) $\\sum_{n=1}^{\\infty} \\frac{(2n)!!}{(2n+1)!!} x^n;$\n\n   (2) $\\sum_{n=1}^{\\infty} \\frac{(-1)^n}{n \\sqrt[n]{n}} x^n;$\n\n   (3) $\\sum_{n=1}^{\\infty} \\frac{3^{-\\sqrt{n}}}{\\sqrt{n^2+1}} x^n;$\n\n   (4) $\\sum_{n=1}^{\\infty} \\left(1 + \\frac{1}{2} + \\cdots + \\frac{1}{n}\\right) x^n;$\n\n   (5) $\\sum_{n=0}^{\\infty} \\left(1 + 2 \\cos \\frac{n\\pi}{4}\\right)^n x^n.$\n\n2. 设$\\sum_{n=0}^{\\infty} a_n x^n$的收敛半径为$R$，且在开区间$(-R, R)$上一致收敛。求证：$\\sum_{n=0}^{\\infty} a_n x^n$在$[-R, R]$上一致收敛。\n\n3. 设幂级数$\\sum_{n=0}^{\\infty} a_n (x - x_0)^n$的收敛半径为$R$，证明幂级数$\\sum_{n=1}^{\\infty} n a_n (x - x_0)^{n-1}$以及$\\sum_{n=0}^{\\infty} \\frac{a_n}{n+1} (x - x_0)^{n+1}$的收敛半径都是$R$。\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分作业\\微积分作业2.md",
+      "title": "微积分作业2.md",
+      "type": "markdown",
+      "chunk_index": 0,
+      "total_chunks": 2
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分作业\\微积分作业2.md_1": {
+    "content": "# 20250317\n\n1. 试将下列函数展开为Maclaurin级数：\n   (1) $\\frac{1}{(1+x)^2}$；\n   (2) $\\frac{x^2}{x^2-3x+1}$；\n   (3) $\\frac{x}{(1-x)(1-x^3)}$；\n\n2. 求下列级数的和：\n   (1) $\\sum_{n=1}^{\\infty} n(n+1)x^n$；\n   (2) $\\sum_{n=0}^{\\infty} \\frac{x^{4n-1}}{4n+1}$；\n   (3) $\\sum_{n=1}^{\\infty} n^2x^{n-1}$。\n\n3. 将函数 $\\ln \\frac{1}{2+2x+x^2}$ 展开为 $x-1$ 的幂级数。\n\n4. 求 $\\arctan x$ 的Maclaurin级数展开，并计算 $\\frac{\\pi}{4} = 1 - \\frac{1}{3} + \\frac{1}{5} - \\frac{1}{7} + \\cdots$。\n\n5. 求函数 $\\frac{1}{(1+x)^2}$ 的Maclaurin级数展开。\n\n6. 求 $\\cos^2 x$ 的Maclaurin级数展开。",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分作业\\微积分作业2.md",
+      "title": "微积分作业2.md",
+      "type": "markdown",
+      "chunk_index": 1,
+      "total_chunks": 2
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_0": {
+    "content": "# T1\n\n1 . 试将下列函数展开为Maclaurin级数：\n   (1)$\\frac{1}{(1+x)^2}$;\n   (2)$\\frac{x^2}{x^2-3x+1}$;\n   (3)$\\frac{x}{(1-x)(1-x^3)}$;\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 0,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_1": {
+    "content": "### 1.$\\frac{1}{(1+x)^2}$的 Maclaurin 级数展开\n\n**步骤：**\n1. 我们知道$\\frac{1}{1+x}$的 Maclaurin 级数为：\n  $$\n   \\frac{1}{1+x} = \\sum_{n=0}^{\\infty} (-1)^n x^n, \\quad |x| < 1\n  $$\n2. 对$\\frac{1}{1+x}$求导，得到：\n  $$\n   \\frac{d}{dx} \\left( \\frac{1}{1+x} \\right) = -\\frac{1}{(1+x)^2}\n  $$\n3. 对级数$\\sum_{n=0}^{\\infty} (-1)^n x^n$求导，得到：\n  $$\n   \\frac{d}{dx} \\left( \\sum_{n=0}^{\\infty} (-1)^n x^n \\right) = \\sum_{n=1}^{\\infty} (-1)^n n x^{n-1}\n  $$\n4. 因此，$\\frac{1}{(1+x)^2}$的 Maclaurin 级数为：\n  $$\n   \\frac{1}{(1+x)^2} = -\\sum_{n=1}^{\\infty} (-1)^n n x^{n-1} = \\sum_{n=0}^{\\infty} (-1)^n (n+1) x^n, \\quad |x| < 1\n  $$\n\n**答案：**\n$$\n\\frac{1}{(1+x)^2} = \\sum_{n=0}^{\\infty} (-1)^n (n+1) x^n, \\quad |x| < 1\n$$\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 1,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_2": {
+    "content": "### 2.$\\frac{x^2}{x^2-3x+1}$的 Maclaurin 级数展开\n\n**步骤：**\n1. 首先对分母进行因式分解：\n  $$\n   x^2 - 3x + 1 = 0\n  $$\n   解得：\n  $$\n   x = \\frac{3 \\pm \\sqrt{5}}{2}\n  $$\n   因此，分母可以写成：\n  $$\n   x^2 - 3x + 1 = \\left(x - \\frac{3 + \\sqrt{5}}{2}\\right) \\left(x - \\frac{3 - \\sqrt{5}}{2}\\right)\n  $$\n2. 将分式拆分为部分分式：\n  $$\n   \\frac{x^2}{x^2 - 3x + 1} = 1 + \\frac{3x - 1}{x^2 - 3x + 1}\n  $$\n3. 对$\\frac{3x - 1}{x^2 - 3x + 1}$进行部分分式分解：\n  $$\n   \\frac{3x - 1}{x^2 - 3x + 1} = \\frac{A}{x - \\frac{3 + \\sqrt{5}}{2}} + \\frac{B}{x - \\frac{3 - \\sqrt{5}}{2}}\n  $$\n   解得：\n  $$\n   A = \\frac{3 \\cdot \\frac{3 + \\sqrt{5}}{2} - 1}{\\frac{3 + \\sqrt{5}}{2} - \\frac{3 - \\sqrt{5}}{2}} = \\frac{\\frac{9 + 3\\sqrt{5} - 2}{2}}{\\sqrt{5}} = \\frac{7 + 3\\sqrt{5}}{2\\sqrt{5}}\n  $$\n  $$\n   B = \\frac{3 \\cdot \\frac{3 - \\sqrt{5}}{2} - 1}{\\frac{3 - \\sqrt{5}}{2} - \\frac{3 + \\sqrt{5}}{2}} = \\frac{\\frac{9 - 3\\sqrt{5} - 2}{2}}{-\\sqrt{5}} = \\frac{7 - 3\\sqrt{5}}{-2\\sqrt{5}}\n  $$\n4. 将部分分式展开为幂级数：\n  $$\n   \\frac{1}{x - \\frac{3 + \\sqrt{5}}{2}} = -\\frac{2}{3 + \\sqrt{5}} \\cdot \\frac{1}{1 - \\frac{2x}{3 + \\sqrt{5}}}",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 2,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_3": {
+    "content": "  $$\n   类似地，对$\\frac{1}{x - \\frac{3 - \\sqrt{5}}{2}}$也进行展开。\n5. 最终展开式为：\n  $$\n   \\frac{x^2}{x^2 - 3x + 1} = 1 + \\sum_{n=0}^{\\infty} \\left( A \\left( \\frac{2}{3 + \\sqrt{5}} \\right)^n + B \\left( \\frac{2}{3 - \\sqrt{5}} \\right)^n \\right) x^n\n  $$\n\n**答案：**\n$$\n\\frac{x^2}{x^2 - 3x + 1} = 1 + \\sum_{n=0}^{\\infty} \\left( A \\left( \\frac{2}{3 + \\sqrt{5}} \\right)^n + B \\left( \\frac{2}{3 - \\sqrt{5}} \\right)^n \\right) x^n\n$$\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 3,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_4": {
+    "content": "### 3.$\\frac{x}{(1-x)(1-x^3)}$的 Maclaurin 级数展开\n\n**步骤：**\n1. 首先将分母分解为：\n  $$\n   (1 - x)(1 - x^3) = (1 - x)(1 - x)(1 + x + x^2) = (1 - x)^2 (1 + x + x^2)\n  $$\n2. 将分式拆分为部分分式：\n  $$\n   \\frac{x}{(1 - x)^2 (1 + x + x^2)} = \\frac{A}{1 - x} + \\frac{B}{(1 - x)^2} + \\frac{Cx + D}{1 + x + x^2}\n  $$\n3. 通过求解方程组确定系数$A, B, C, D$。\n4. 对每个部分进行幂级数展开：\n   -$\\frac{1}{1 - x}$的展开式为$\\sum_{n=0}^{\\infty} x^n$。\n   -$\\frac{1}{(1 - x)^2}$的展开式为$\\sum_{n=0}^{\\infty} (n+1) x^n$。\n   -$\\frac{Cx + D}{1 + x + x^2}$的展开式需要通过泰勒级数展开。\n5. 最终展开式为：\n  $$\n   \\frac{x}{(1 - x)(1 - x^3)} = \\sum_{n=0}^{\\infty} (A + B(n+1)) x^n + \\sum_{n=0}^{\\infty} (Cx + D) x^n\n  $$\n\n**答案：**\n$$\n\\frac{x}{(1 - x)(1 - x^3)} = \\sum_{n=0}^{\\infty} (A + B(n+1)) x^n + \\sum_{n=0}^{\\infty} (Cx + D) x^n\n$$\n\n\n以上是三个函数的 Maclaurin 级数展开过程。如果有进一步的问题，欢迎继续讨论！\n\n\n---",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 4,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_5": {
+    "content": "# T2\n\n2 . 求下列级数的和： (1)$\\sum_{n=1}^{\\infty} n(n+1)x^n$； (2)$\\sum_{n=0}^{\\infty} \\frac{x^{4n-1}}{4n+1}$； (3)$\\sum_{n=1}^{\\infty} n^2x^{n-1}$。;\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 5,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_6": {
+    "content": "### (1) 求$\\sum_{n=1}^{\\infty} n(n+1)x^n$的和\n\n**步骤：**\n\n1. **构造函数：**\n   设$S(x) = \\sum_{n=1}^{\\infty} n(n+1)x^n$。\n\n2. **化简表达式：**\n   注意到$n(n+1) = n^2 + n$，因此可以将级数拆分为：\n  $$\n   S(x) = \\sum_{n=1}^{\\infty} n^2 x^n + \\sum_{n=1}^{\\infty} n x^n\n  $$\n\n3. **分别求和：**\n   - 对于$\\sum_{n=1}^{\\infty} n x^n$，根据笔记中的方法，我们知道：\n    $$\n     \\sum_{n=1}^{\\infty} n x^n = \\frac{x}{(1 - x)^2}\n    $$\n   - 对于$\\sum_{n=1}^{\\infty} n^2 x^n$，我们可以通过对$\\sum_{n=1}^{\\infty} n x^n$求导并乘以$x$来得到：\n    $$\n     \\sum_{n=1}^{\\infty} n^2 x^n = x \\cdot \\frac{d}{dx} \\left( \\sum_{n=1}^{\\infty} n x^n \\right) = x \\cdot \\frac{d}{dx} \\left( \\frac{x}{(1 - x)^2} \\right)\n    $$\n     计算导数：\n    $$\n     \\frac{d}{dx} \\left( \\frac{x}{(1 - x)^2} \\right) = \\frac{(1 - x)^2 + 2x(1 - x)}{(1 - x)^4} = \\frac{1 + x}{(1 - x)^3}\n    $$\n     因此：\n    $$\n     \\sum_{n=1}^{\\infty} n^2 x^n = x \\cdot \\frac{1 + x}{(1 - x)^3} = \\frac{x(1 + x)}{(1 - x)^3}\n    $$\n\n4. **合并结果：**\n  $$\n   S(x) = \\sum_{n=1}^{\\infty} n^2 x^n + \\sum_{n=1}^{\\infty} n x^n = \\frac{x(1 + x)}{(1 - x)^3} + \\frac{x}{(1 - x)^2}\n  $$\n   化简：\n  $$",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 6,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_7": {
+    "content": "   S(x) = \\frac{x(1 + x) + x(1 - x)}{(1 - x)^3} = \\frac{x(1 + x + 1 - x)}{(1 - x)^3} = \\frac{2x}{(1 - x)^3}\n  $$\n\n**答案：**\n$$\n\\sum_{n=1}^{\\infty} n(n+1)x^n = \\frac{2x}{(1 - x)^3}, \\quad |x| < 1\n$$\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 7,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_8": {
+    "content": "### (2) 求$\\sum_{n=0}^{\\infty} \\frac{x^{4n-1}}{4n+1}$的和\n\n**步骤：**\n\n1. **构造函数：**\n   设$S(x) = \\sum_{n=0}^{\\infty} \\frac{x^{4n-1}}{4n+1}$。\n\n2. **调整指数形式：**\n   将$x^{4n-1}$写成$x^{-1} \\cdot x^{4n}$，因此：\n  $$\n   S(x) = x^{-1} \\sum_{n=0}^{\\infty} \\frac{x^{4n}}{4n+1}\n  $$\n\n3. **求和函数：**\n   设$T(x) = \\sum_{n=0}^{\\infty} \\frac{x^{4n}}{4n+1}$，我们需要求$T(x)$。\n   - 对$T(x)$求导：\n    $$\n     T'(x) = \\sum_{n=0}^{\\infty} \\frac{4n x^{4n-1}}{4n+1} = \\sum_{n=0}^{\\infty} x^{4n-1} = x^{-1} \\sum_{n=0}^{\\infty} x^{4n}\n    $$\n   - 计算$\\sum_{n=0}^{\\infty} x^{4n}$：\n    $$\n     \\sum_{n=0}^{\\infty} x^{4n} = \\frac{1}{1 - x^4}, \\quad |x| < 1\n    $$\n   - 因此：\n    $$\n     T'(x) = x^{-1} \\cdot \\frac{1}{1 - x^4} = \\frac{1}{x(1 - x^4)}\n    $$\n   - 对$T'(x)$积分得到$T(x)$：\n    $$\n     T(x) = \\int \\frac{1}{x(1 - x^4)} \\, dx\n    $$\n     这个积分需要分解分式，较为复杂，通常需要使用部分分式分解。\n\n4. **最终表达式：**\n   由于积分过程较为复杂，这里直接给出结果：\n  $$\n   T(x) = \\frac{1}{4} \\ln \\left( \\frac{1 + x}{1 - x} \\right) + \\frac{1}{2} \\arctan(x)\n  $$\n   因此：\n  $$\n   S(x) = x^{-1} T(x) = \\frac{1}{4x} \\ln \\left( \\frac{1 + x}{1 - x} \\right) + \\frac{1}{2x} \\arctan(x)",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 8,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_9": {
+    "content": "  $$\n\n**答案：**\n$$\n\\sum_{n=0}^{\\infty} \\frac{x^{4n-1}}{4n+1} = \\frac{1}{4x} \\ln \\left( \\frac{1 + x}{1 - x} \\right) + \\frac{1}{2x} \\arctan(x), \\quad |x| < 1\n$$\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 9,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_10": {
+    "content": "### (3) 求$\\sum_{n=1}^{\\infty} n^2x^{n-1}$的和\n\n**步骤：**\n\n1. **构造函数：**\n   设$S(x) = \\sum_{n=1}^{\\infty} n^2x^{n-1}$。\n\n2. **调整指数形式：**\n   将$x^{n-1}$写成$x^{-1} \\cdot x^n$，因此：\n  $$\n   S(x) = x^{-1} \\sum_{n=1}^{\\infty} n^2 x^n\n  $$\n\n3. **求和函数：**\n   对于$\\sum_{n=1}^{\\infty} n^2 x^n$，根据笔记中的方法，我们知道：\n  $$\n   \\sum_{n=1}^{\\infty} n^2 x^n = \\frac{x(1 + x)}{(1 - x)^3}\n  $$\n   因此：\n  $$\n   S(x) = x^{-1} \\cdot \\frac{x(1 + x)}{(1 - x)^3} = \\frac{1 + x}{(1 - x)^3}\n  $$\n\n**答案：**\n$$\n\\sum_{n=1}^{\\infty} n^2x^{n-1} = \\frac{1 + x}{(1 - x)^3}, \\quad |x| < 1\n$$\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 10,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_11": {
+    "content": "### 总结\n1.$\\sum_{n=1}^{\\infty} n(n+1)x^n = \\frac{2x}{(1 - x)^3}, \\quad |x| < 1$；\n2.$\\sum_{n=0}^{\\infty} \\frac{x^{4n-1}}{4n+1} = \\frac{1}{4x} \\ln \\left( \\frac{1 + x}{1 - x} \\right) + \\frac{1}{2x} \\arctan(x), \\quad |x| < 1$；\n3.$\\sum_{n=1}^{\\infty} n^2x^{n-1} = \\frac{1 + x}{(1 - x)^3}, \\quad |x| < 1$。\n\n\n\n---\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 11,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_12": {
+    "content": "# T3\n\n3 . 将函数$\\ln \\frac{1}{2+2x+x^2}$展开为$x-1$的幂级数。\n\n要将函数$\\ln \\frac{1}{2+2x+x^2}$展开为$x-1$的幂级数，我们可以按照以下步骤进行：\n\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 12,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_13": {
+    "content": "### 1. 化简函数\n首先，将函数化简为更简单的形式：\n$$\n\\ln \\frac{1}{2+2x+x^2} = -\\ln(2+2x+x^2).\n$$\n因此，我们需要展开$\\ln(2+2x+x^2)$为$x-1$的幂级数。\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 13,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_14": {
+    "content": "### 2. 对$2+2x+x^2$进行配方\n对分母$2+2x+x^2$进行配方：\n$$\n2+2x+x^2 = (x^2 + 2x + 1) + 1 = (x+1)^2 + 1.\n$$\n因此，函数可以写成：\n$$\n\\ln(2+2x+x^2) = \\ln\\left((x+1)^2 + 1\\right).\n$$\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 14,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_15": {
+    "content": "### 3. 引入变量替换\n令$t = x - 1$，则$x = t + 1$。将$x$替换为$t + 1$，得到：\n$$\n\\ln(2+2x+x^2) = \\ln\\left((t+2)^2 + 1\\right) = \\ln(t^2 + 4t + 5).\n$$\n因此，我们需要展开$\\ln(t^2 + 4t + 5)$为$t$的幂级数。\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 15,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_16": {
+    "content": "### 4. 对$\\ln(t^2 + 4t + 5)$进行泰勒展开\n泰勒展开的中心点为$t = 0$，即$x = 1$。我们需要计算$\\ln(t^2 + 4t + 5)$在$t = 0$处的各阶导数。\n\n#### 4.1 计算函数值\n在$t = 0$处：\n$$\n\\ln(t^2 + 4t + 5) \\bigg|_{t=0} = \\ln(5).\n$$\n\n#### 4.2 计算一阶导数\n对$\\ln(t^2 + 4t + 5)$求导：\n$$\n\\frac{d}{dt} \\ln(t^2 + 4t + 5) = \\frac{2t + 4}{t^2 + 4t + 5}.\n$$\n在$t = 0$处：\n$$\n\\frac{2t + 4}{t^2 + 4t + 5} \\bigg|_{t=0} = \\frac{4}{5}.\n$$\n\n#### 4.3 计算二阶导数\n对一阶导数再求导：\n$$\n\\frac{d}{dt} \\left( \\frac{2t + 4}{t^2 + 4t + 5} \\right) = \\frac{(2)(t^2 + 4t + 5) - (2t + 4)(2t + 4)}{(t^2 + 4t + 5)^2}.\n$$\n在$t = 0$处：\n$$\n\\frac{2 \\cdot 5 - 4 \\cdot 4}{5^2} = \\frac{10 - 16}{25} = -\\frac{6}{25}.\n$$\n\n#### 4.4 计算更高阶导数\n类似地，可以计算更高阶导数，但为了简化问题，我们通常只展开到前几项。\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 16,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_17": {
+    "content": "### 5. 写出泰勒级数\n根据泰勒级数公式：\n$$\n\\ln(t^2 + 4t + 5) = \\ln(5) + \\frac{4}{5} t - \\frac{6}{25} \\frac{t^2}{2!} + \\cdots.\n$$\n因此，展开式为：\n$$\n\\ln(t^2 + 4t + 5) = \\ln(5) + \\frac{4}{5} t - \\frac{3}{25} t^2 + \\cdots.\n$$\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 17,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_18": {
+    "content": "### 6. 代回原变量\n将$t = x - 1$代回，得到：\n$$\n\\ln(2+2x+x^2) = \\ln(5) + \\frac{4}{5} (x-1) - \\frac{3}{25} (x-1)^2 + \\cdots.\n$$\n因此，原函数的展开式为：\n$$\n\\ln \\frac{1}{2+2x+x^2} = -\\ln(5) - \\frac{4}{5} (x-1) + \\frac{3}{25} (x-1)^2 + \\cdots.\n$$\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 18,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_19": {
+    "content": "### 7. 最终结果\n将展开式写成幂级数形式：\n$$\n\\ln \\frac{1}{2+2x+x^2} = -\\ln(5) - \\frac{4}{5} (x-1) + \\frac{3}{25} (x-1)^2 + \\cdots.\n$$\n\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 19,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_20": {
+    "content": "### 8. 收敛域\n展开式的收敛域需要满足$t^2 + 4t + 5 > 0$，而$t^2 + 4t + 5$对所有实数$t$都大于零，因此展开式在$x = 1$的某个邻域内收敛。\n\n\n这就是函数$\\ln \\frac{1}{2+2x+x^2}$展开为$x-1$的幂级数的结果。\n\n\n---\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 20,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_21": {
+    "content": "# T4\n\n4 . 求 $\\arctan x$ 的Maclaurin级数展开，并计算 $\\frac{\\pi}{4} = 1 - \\frac{1}{3} + \\frac{1}{5} - \\frac{1}{7} + \\cdots$。\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 21,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_22": {
+    "content": "### 1. 求 $\\arctan x$ 的 Maclaurin 级数展开\n\n我们知道，$\\arctan x$ 的导数是 $\\frac{1}{1 + x^2}$。我们可以利用 $\\frac{1}{1 + x^2}$ 的幂级数展开来求 $\\arctan x$ 的 Maclaurin 级数。\n\n首先，$\\frac{1}{1 + x^2}$ 的幂级数展开为：\n$$\n\\frac{1}{1 + x^2} = \\sum_{n=0}^{\\infty} (-1)^n x^{2n}, \\quad |x| < 1\n$$\n\n然后，我们对 $\\frac{1}{1 + x^2}$ 进行积分，得到 $\\arctan x$ 的 Maclaurin 级数：\n$$\n\\arctan x = \\int_0^x \\frac{1}{1 + t^2} dt = \\int_0^x \\sum_{n=0}^{\\infty} (-1)^n t^{2n} dt = \\sum_{n=0}^{\\infty} (-1)^n \\int_0^x t^{2n} dt\n$$\n\n计算积分：\n$$\n\\int_0^x t^{2n} dt = \\frac{x^{2n+1}}{2n+1}\n$$\n\n因此，$\\arctan x$ 的 Maclaurin 级数为：\n$$\n\\arctan x = \\sum_{n=0}^{\\infty} (-1)^n \\frac{x^{2n+1}}{2n+1}, \\quad |x| < 1\n$$\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 22,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_23": {
+    "content": "### 2. 计算 $\\frac{\\pi}{4} = 1 - \\frac{1}{3} + \\frac{1}{5} - \\frac{1}{7} + \\cdots$\n\n我们知道，当 $x = 1$ 时，$\\arctan 1 = \\frac{\\pi}{4}$。将 $x = 1$ 代入 $\\arctan x$ 的 Maclaurin 级数：\n$$\n\\frac{\\pi}{4} = \\arctan 1 = \\sum_{n=0}^{\\infty} (-1)^n \\frac{1^{2n+1}}{2n+1} = \\sum_{n=0}^{\\infty} (-1)^n \\frac{1}{2n+1}\n$$\n\n展开前几项：\n$$\n\\frac{\\pi}{4} = 1 - \\frac{1}{3} + \\frac{1}{5} - \\frac{1}{7} + \\cdots\n$$\n\n这就是著名的莱布尼茨级数，用于计算 $\\pi$ 的近似值。\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 23,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_24": {
+    "content": "### 总结\n- $\\arctan x$ 的 Maclaurin 级数为：\n  $$\n  \\arctan x = \\sum_{n=0}^{\\infty} (-1)^n \\frac{x^{2n+1}}{2n+1}, \\quad |x| < 1\n  $$\n- 当 $x = 1$ 时，$\\arctan 1 = \\frac{\\pi}{4}$，因此：\n  $$\n  \\frac{\\pi}{4} = 1 - \\frac{1}{3} + \\frac{1}{5} - \\frac{1}{7} + \\cdots\n  $$\n  \n这个级数虽然收敛较慢，但在数学分析和数值计算中具有重要意义。\n\n\n---\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 24,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_25": {
+    "content": "# T5\n\n5 . 求函数 $\\frac{1}{(1+x)^2}$ 的Maclaurin级数展开。\n\n根据你的笔记内容，我们可以通过求导和幂级数展开的方法来求解函数 $\\frac{1}{(1+x)^2}$ 的 Maclaurin 级数展开。\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 25,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_26": {
+    "content": "### 步骤 1：已知函数的幂级数展开\n我们知道，函数 $\\frac{1}{1+x}$ 的 Maclaurin 级数展开为：\n$$\n\\frac{1}{1+x} = \\sum_{n=0}^{\\infty} (-1)^n x^n, \\quad |x| < 1\n$$\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 26,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_27": {
+    "content": "### 步骤 2：对已知级数求导\n为了得到 $\\frac{1}{(1+x)^2}$ 的级数展开，我们可以对 $\\frac{1}{1+x}$ 的级数展开求导：\n$$\n\\frac{d}{dx} \\left( \\frac{1}{1+x} \\right) = \\frac{d}{dx} \\left( \\sum_{n=0}^{\\infty} (-1)^n x^n \\right)\n$$\n\n计算导数：\n$$\n\\frac{d}{dx} \\left( \\frac{1}{1+x} \\right) = -\\frac{1}{(1+x)^2}\n$$\n\n对级数求导：\n$$\n\\frac{d}{dx} \\left( \\sum_{n=0}^{\\infty} (-1)^n x^n \\right) = \\sum_{n=1}^{\\infty} (-1)^n n x^{n-1}\n$$\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 27,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_28": {
+    "content": "### 步骤 3：整理得到目标函数的级数展开\n将导数结果代入：\n$$\n-\\frac{1}{(1+x)^2} = \\sum_{n=1}^{\\infty} (-1)^n n x^{n-1}\n$$\n\n两边同时乘以 $-1$：\n$$\n\\frac{1}{(1+x)^2} = \\sum_{n=1}^{\\infty} (-1)^{n+1} n x^{n-1}\n$$\n\n调整求和下标，令 $k = n - 1$，则 $n = k + 1$：\n$$\n\\frac{1}{(1+x)^2} = \\sum_{k=0}^{\\infty} (-1)^{k+2} (k + 1) x^k = \\sum_{k=0}^{\\infty} (-1)^k (k + 1) x^k\n$$\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 28,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_29": {
+    "content": "### 最终结果\n函数 $\\frac{1}{(1+x)^2}$ 的 Maclaurin 级数展开为：\n$$\n\\frac{1}{(1+x)^2} = \\sum_{n=0}^{\\infty} (-1)^n (n + 1) x^n, \\quad |x| < 1\n$$\n\n这个级数在 $|x| < 1$ 的区间内收敛。\n\n---\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 29,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_30": {
+    "content": "# T6\n\n6 . 求 $\\cos^2 x$ 的Maclaurin级数展开。\n\n要展开 $\\cos^2 x$ 的 Maclaurin 级数，我们可以利用已知的 $\\cos x$ 的 Maclaurin 级数展开式，并结合三角恒等式来简化问题。\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 30,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_31": {
+    "content": "### 已知：\n$\\cos x$ 的 Maclaurin 级数展开为：\n$$\n\\cos x = \\sum_{n=0}^{\\infty} \\frac{(-1)^n}{(2n)!} x^{2n}\n$$\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 31,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_32": {
+    "content": "### 步骤：\n1. **利用三角恒等式**：\n   $$\n   \\cos^2 x = \\frac{1 + \\cos 2x}{2}\n   $$\n\n2. **展开 $\\cos 2x$ 的 Maclaurin 级数**：\n   将 $\\cos x$ 的级数中的 $x$ 替换为 $2x$，得到：\n   $$\n   \\cos 2x = \\sum_{n=0}^{\\infty} \\frac{(-1)^n}{(2n)!} (2x)^{2n} = \\sum_{n=0}^{\\infty} \\frac{(-1)^n}{(2n)!} 4^n x^{2n}\n   $$\n\n3. **将 $\\cos 2x$ 的级数代入三角恒等式**：\n   $$\n   \\cos^2 x = \\frac{1 + \\sum_{n=0}^{\\infty} \\frac{(-1)^n}{(2n)!} 4^n x^{2n}}{2}\n   $$\n\n4. **简化表达式**：\n   $$\n   \\cos^2 x = \\frac{1}{2} + \\frac{1}{2} \\sum_{n=0}^{\\infty} \\frac{(-1)^n}{(2n)!} 4^n x^{2n}\n   $$\n\n5. **进一步整理**：\n   $$\n   \\cos^2 x = \\frac{1}{2} + \\sum_{n=0}^{\\infty} \\frac{(-1)^n}{(2n)!} 2^{2n-1} x^{2n}\n   $$\n",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 32,
+      "total_chunks": 34
+    }
+  },
+  "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md_33": {
+    "content": "### 最终结果：\n$\\cos^2 x$ 的 Maclaurin 级数展开为：\n$$\n\\cos^2 x = \\frac{1}{2} + \\sum_{n=0}^{\\infty} \\frac{(-1)^n}{(2n)!} 2^{2n-1} x^{2n}\n$$\n\n这个级数对所有实数 $x$ 都收敛。",
+    "metadata": {
+      "source": "./knowledge/documents\\微积分\\微积分答案\\20250317对策卡.md",
+      "title": "20250317对策卡.md",
+      "type": "markdown",
+      "chunk_index": 33,
+      "total_chunks": 34
+    }
+  }
+}

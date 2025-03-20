@@ -49,14 +49,28 @@ class VectorStore:
         with open(embeddings_path, 'w', encoding='utf-8') as f:
             json.dump(embeddings_dict, f)
     
+    # def get_embedding(self, text: str) -> np.ndarray:
+    #     """获取文本的嵌入向量"""
+    #     response = openai.Embedding.create(
+    #         model=self.embedding_model,
+    #         input=text
+    #     )
+    #     return np.array(response['data'][0]['embedding'], dtype=np.float32)
     def get_embedding(self, text: str) -> np.ndarray:
         """获取文本的嵌入向量"""
-        response = openai.Embedding.create(
-            model=self.embedding_model,
-            input=text
-        )
-        return np.array(response['data'][0]['embedding'], dtype=np.float32)
-    
+        if self.embedding_model.startswith("sentence-transformers/"):
+            from sentence_transformers import SentenceTransformer
+            model = SentenceTransformer(self.embedding_model)
+            embedding = model.encode(text)
+            # 转换为numpy数组
+            return np.array(embedding, dtype=np.float32)
+        else:
+            # 原有的OpenAI逻辑，但使用新版API
+            import openai
+            client = openai.OpenAI()
+            embeddings = client.embeddings.create(input=[text], model=self.embedding_model)
+            return np.array(embeddings.data[0].embedding, dtype=np.float32)
+
     def add_document(self, doc_id: str, content: str, metadata: Dict[str, Any]):
         """添加文档到向量数据库"""
         # 存储文档内容和元数据

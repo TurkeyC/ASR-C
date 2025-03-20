@@ -1,4 +1,15 @@
 import os
+import sys
+
+# 设置项目根目录和便携式Python环境路径
+project_root = os.path.dirname(__file__)
+runtime_path = os.path.join(project_root, 'Runtime')
+
+# 将项目根目录添加到sys.path
+sys.path.insert(0, project_root)
+sys.path.insert(0, runtime_path)
+os.environ['PATH'] = runtime_path + os.pathsep + os.environ['PATH']
+
 import yaml
 import gradio as gr
 from models import create_model
@@ -26,6 +37,36 @@ def init_model():
         api_base=model_config.get("api_base", ""),
         temperature=model_config.get("temperature", 0.7)
     )
+
+def load_model():
+    """加载模型"""
+    try:
+        # 读取配置
+        with open("config.yaml", "r", encoding="utf-8") as f:
+            config = yaml.safe_load(f)
+
+        model_config = config.get("model", {})
+
+        # 打印模型配置
+        print("模型配置:")
+        print(f"- 提供者: {model_config.get('provider', 'N/A')}")
+        print(f"- 模型名称: {model_config.get('name', 'N/A')}")
+        print(f"- API基础URL: {model_config.get('api_base', 'N/A')}")
+        print(f"- API密钥设置: {'是' if model_config.get('api_key') else '否'}")
+
+        # 从配置创建模型
+        model = create_model(
+            provider=model_config.get("provider", ""),
+            model_name=model_config.get("name", ""),
+            api_key=model_config.get("api_key", ""),
+            api_base=model_config.get("api_base", ""),
+            temperature=float(model_config.get("temperature", 0.7))
+        )
+
+        return model
+    except Exception as e:
+        print(f"加载模型失败: {e}")
+        raise e
 
 # 初始化知识库
 def init_knowledge_base():
@@ -77,4 +118,4 @@ def create_app():
 # 运行应用
 if __name__ == "__main__":
     app = create_app()
-    app.launch(server_name="0.0.0.0", server_port=7860, share=False)
+    app.launch(server_name="127.0.0.1", server_port=7860, share=False)
