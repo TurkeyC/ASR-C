@@ -5,13 +5,17 @@
 ## 功能特点
 
 - 支持多种AI大模型
-  - OpenAI API
+  - OpenAI、Moonshot、Deepseek API
   - 本地Ollama
   - LMStudio本地模型
 - 基于RAG的知识库检索
 - 树状结构知识库导航
 - 简洁直观的Web用户界面
 - 支持Markdown文档的自动索引
+
+## 项目的不足与其他开发计划
+
+详情见 [开发日志](Developer_Log.md)
 
 ## 项目目录结构
 
@@ -52,6 +56,10 @@ ai-assistant/
 ```
 
 ## 快速开始
+
+前往 [Releases](https://github.com/TurkeyC/MarkTreeChat/releases/download/v0.1/MarkTreeChat_OneKey_v0.1.zip) 下载最新v0.1版本的一键包，解压后运行`start.bat`即可。
+
+## 手动部署
 
 ### 1. 安装依赖
 
