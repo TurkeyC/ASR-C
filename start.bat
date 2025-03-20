@@ -12,4 +12,4 @@ timeout /t 3 /nobreak > nul
 :: 打开浏览器访问应用
 start http://127.0.0.1:7860
 
-pause
+:: pause
