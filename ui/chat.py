@@ -2,9 +2,31 @@ import gradio as gr
 import time
 from typing import Dict, List, Any
 from models.base import BaseModel
+import re
 
 def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
     """创建聊天界面"""
+
+    custom_css = """
+    <style>
+    .chat-display .message-wrap {
+        overflow-x: auto !important;
+    }
+    .chat-display .message-wrap .message {
+        max-width: 100% !important;
+        overflow-x: auto !important;
+    }
+    .chat-display .message-wrap .message p {
+        white-space: pre-wrap !important;
+    }
+    .chat-display .message .math-block {
+        overflow-x: auto !important;
+        padding: 8px 0 !important;
+        margin: 8px 0 !important;
+    }
+    </style>
+    """
+    gr.HTML(custom_css)
 
     # 获取知识库组件
     vector_store = kb["vector_store"]
@@ -14,14 +36,52 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
     # 全局聊天历史记录
     chat_history = []
 
+    # 处理LaTeX公式的函数，确保行间公式能正确显示
+    def process_latex_formulas(text):
+        """处理文本中的LaTeX公式，确保正确渲染"""
+        if not text:
+            return text
+
+        # 更精确的正则表达式，使用非贪婪匹配并考虑嵌套和转义
+        result = ""
+        last_end = 0
+
+        # 使用更可靠的正则表达式找出所有行间公式
+        for match in re.finditer(r'(^|\n)[ \t]*(\$\$)(.+?)(\$\$)[ \t]*($|\n)', text, re.DOTALL | re.MULTILINE):
+            start, end = match.span()
+            formula_content = match.group(3).strip()
+
+            # 添加匹配前的文本
+            result += text[last_end:start]
+
+            # 添加格式化的公式，确保前后有两个空行
+            result += f"\n\n$$\n{formula_content}\n$$\n\n"
+
+            last_end = end
+
+        # 添加最后一段文本
+        if last_end < len(text):
+            result += text[last_end:]
+
+        # 如果没有匹配项，返回原始文本
+        if result == "":
+            # 第二种尝试：处理不符合上面格式的公式
+            pattern = r'(\$\$)(.*?)(\$\$)'
+
+            def replace_formula(match):
+                formula = match.group(2).strip()
+                return f"\n\n$$\n{formula}\n$$\n\n"
+
+            result = re.sub(pattern, replace_formula, text, flags=re.DOTALL)
+
+        return result
+
     # 处理用户消息
     def respond(message, history, system_prompt, use_rag, top_k, temperature):
         try:
             # 打印当前模型配置进行调试
             print(f"使用模型: {model.model_name}")
             print(f"API基础URL: {getattr(model, 'api_base', 'N/A')}")
-            if hasattr(model, 'api_key') and model.api_key:
-                print(f"API密钥前后4位: {model.api_key[:4]}...{model.api_key[-4:] if len(model.api_key) >= 8 else ''}")
 
             # 准备上下文（如果启用了RAG）
             context = ""
@@ -48,10 +108,13 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
             current_chat_history.append({"role": "user", "content": message})
 
             # 添加LaTeX渲染提示到系统提示中
+            latex_prompt = """
+            在回答涉及数学公式时，请使用LaTeX语法，请确保只使用行内公式，不应该使用行间公式，这对于正确渲染非常重要。
+            """
             if system_prompt:
-                system_prompt += "\n\n请在回答中使用适当的LaTeX格式展示公式：行内公式使用$符号包围，行间公式使用$$符号包围。"
+                system_prompt += "\n\n" + latex_prompt
             else:
-                system_prompt = "请在回答中使用适当的LaTeX格式展示公式：行内公式使用$符号包围，行间公式使用$$符号包围。"
+                system_prompt = latex_prompt
 
             # 获取模型回复
             reply = model.chat(
@@ -63,6 +126,9 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
             # 确保reply是字符串
             if not isinstance(reply, str):
                 reply = str(reply)
+
+            # 处理回复中的LaTeX公式，确保正确渲染
+            reply = process_latex_formulas(reply)
 
             # 更新聊天历史
             history = history + [(message, reply)]
@@ -78,11 +144,17 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
     # 创建界面组件
     with gr.Row():
         with gr.Column(scale=3):
-            # 主聊天区域 - 确保启用Markdown和LaTeX渲染
-            chatbot = gr.Chatbot(height=600, render_markdown=True, latex_delimiters=[
-                {"left": "$$", "right": "$$", "display": True},
-                {"left": "$", "right": "$", "display": False}
-            ])
+            # 主聊天区域 - 启用Markdown和LaTeX渲染
+            chatbot = gr.Chatbot(
+                height=600,
+                render_markdown=True,
+                latex_delimiters=[
+                    {"left": "$$", "right": "$$", "display": True},
+                    {"left": "$", "right": "$", "display": False}
+                ],
+                bubble_full_width=False,  # 确保气泡不会占满宽度，有助于公式渲染
+                elem_classes="chat-display"  # 添加自定义类以便于样式定制
+            )
 
             # 提示用户可以使用LaTeX
             msg = gr.Textbox(
@@ -93,17 +165,6 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
             with gr.Row():
                 submit_btn = gr.Button("发送")
                 clear_btn = gr.Button("清除对话")
-
-            # 添加LaTeX使用指南
-            latex_guide = """
-            ### LaTeX公式支持
-            - **行内公式**：使用单个美元符号包围，如 $E=mc^2$
-            - **行间公式**：使用双美元符号包围，如 
-              $$\\frac{d}{dx}f(x)=\\lim_{h\\to 0}\\frac{f(x+h)-f(x)}{h}$$
-            
-            您可以在对话中直接使用LaTeX语法，AI助手的回复也会以LaTeX格式展示数学公式。
-            """
-            gr.Markdown(latex_guide)
 
         with gr.Column(scale=1):
             # 设置面板
