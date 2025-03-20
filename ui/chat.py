@@ -153,7 +153,7 @@ def create_chat_ui(model: BaseModel, kb: Dict[str, Any]):
                 textbox.addEventListener("keydown", function(e) {
                     if (e.key === "Enter") {
                         if (!e.shiftKey && !e.ctrlKey) {
-                            // 普通Enter - 发送消息
+                            // 普通Enter
                             e.preventDefault();
                             const submitButton = document.querySelector(".submit-btn");
                             if (submitButton) {
