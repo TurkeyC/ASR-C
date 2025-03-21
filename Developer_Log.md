@@ -10,3 +10,11 @@
 - [ ] 无法实现树状知识库
 
 - [ ] 我要加入storm和HippoRAG功能！！！！！！
+
+### 研发路线
+- [ ] Swarms 虫群
+- [ ] Storm 风暴
+- [ ] Consciousness Flow 意识流
+- [ ] Hook 钩子
+- [ ] Memory Zone 忆域
+- [ ] Sumeru 须弥
